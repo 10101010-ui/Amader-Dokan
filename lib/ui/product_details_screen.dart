@@ -94,33 +94,41 @@ class _ProductDetailsState extends State<ProductDetails> {
         ],
       ),
       body: SafeArea(
-          child: Padding(
+        child:Padding(
             padding: const EdgeInsets.only(left: 12, right: 12, top: 10),
-            child: Column(
+            child: SingleChildScrollView(
+              child:
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AspectRatio(
-                  aspectRatio: 3.5,
-                  child: CarouselSlider(
-                      items: widget._product['product-img']
-                          .map<Widget>((item) => Padding(
-                        padding: const EdgeInsets.only(left: 3, right: 3),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(item),
-                                  fit: BoxFit.fitWidth)),
-                        ),
-                      ))
-                          .toList(),
-                      options: CarouselOptions(
-                          autoPlay: false,
-                          enlargeCenterPage: true,
-                          viewportFraction: 0.8,
-                          enlargeStrategy: CenterPageEnlargeStrategy.height,
-                          onPageChanged: (val, carouselPageChangedReason) {
-                            setState(() {});
-                          })),
+                  aspectRatio: 1.5,
+                  child: Container(
+            decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(widget._product['product-img']),
+            fit: BoxFit.cover)),
+    ),
+                  // child: CarouselSlider(
+                  //     items: widget._product['product-img']
+                  //         .map<Widget>((item) => Padding(
+                  //       padding: const EdgeInsets.only(left: 3, right: 3),
+                  //       child: Container(
+                  //         decoration: BoxDecoration(
+                  //             image: DecorationImage(
+                  //                 image: NetworkImage(item),
+                  //                 fit: BoxFit.fitWidth)),
+                  //       ),
+                  //     ))
+                  //         .toList(),
+                  //     options: CarouselOptions(
+                  //         autoPlay: false,
+                  //         enlargeCenterPage: true,
+                  //         viewportFraction: 0.8,
+                  //         enlargeStrategy: CenterPageEnlargeStrategy.height,
+                  //         onPageChanged: (val, carouselPageChangedReason) {
+                  //           setState(() {});
+                  //         })),
                 ),
                 Text(
                   widget._product['product-name'],
@@ -131,7 +139,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   height: 10,
                 ),
                 Text(
-                  "\$ ${widget._product['product-price'].toString()}",
+                  "BDT ${widget._product['product-price'].toString()}",
                   style: TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 30, color: Colors.red),
                 ),
@@ -139,21 +147,25 @@ class _ProductDetailsState extends State<ProductDetails> {
                 SizedBox(
                   width: 1.sw,
                   height: 56.h,
-                  child: ElevatedButton(
+                  child:
+                  Padding(
+                    padding:EdgeInsets.all(5),
+                    child:ElevatedButton(
                     onPressed: () => addToCart(),
                     child: Text(
                       "Add to cart",
                       style: TextStyle(color: Colors.white, fontSize: 18.sp),
                     ),
                     style: ElevatedButton.styleFrom(
-                    //  primary: AppColors.deep_orange,
-                      elevation: 3,
-                    ),
+                        backgroundColor: Colors.blue,),
                   ),
+                ),
                 ),
               ],
             ),
-          )),
+        ),
+          )
+    ),
     );
   }
 }

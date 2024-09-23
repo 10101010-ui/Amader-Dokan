@@ -6,6 +6,8 @@ import 'package:untitled/const/AppColors.dart';
 import 'package:untitled/ui/bottom_nav_pages/home.dart';
 import 'package:untitled/ui/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:untitled/ui/bottom_nav_controller.dart';
+import 'package:untitled/ui/bottom_nav_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -15,7 +17,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 3),()=>Navigator.push(context, CupertinoPageRoute(builder: (_)=>Home())));
+    Timer(const Duration(seconds: 3),()=>Navigator.push(context, CupertinoPageRoute(builder: (_)=>LoginScreen())));
     super.initState();
   }
   @override

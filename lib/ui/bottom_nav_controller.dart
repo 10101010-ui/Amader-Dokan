@@ -41,13 +41,13 @@ class _BottomNavControllerState extends State<BottomNavController> {
         selectedLabelStyle:
         TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home",backgroundColor: Colors.grey),
+          BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home",backgroundColor: Colors.blue),
 
-          BottomNavigationBarItem(icon: Icon(Icons.favorite_outline),label: "Favourite",backgroundColor: Colors.grey),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite_outline),label: "Favourite",backgroundColor: Colors.blue),
 
-          BottomNavigationBarItem(icon: Icon(Icons.add_shopping_cart),label: "Cart",backgroundColor: Colors.grey),
+          BottomNavigationBarItem(icon: Icon(Icons.add_shopping_cart),label: "Cart",backgroundColor: Colors.blue),
 
-          BottomNavigationBarItem(icon: Icon(Icons.person),label: "Person",backgroundColor: Colors.grey),
+          BottomNavigationBarItem(icon: Icon(Icons.person),label: "Person",backgroundColor: Colors.blue),
         ],
         onTap: (index) {
           setState(() {

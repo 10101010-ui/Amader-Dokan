@@ -40,9 +40,9 @@ class _HomeState extends State<Home> {
     setState(() {
       for (int i = 0; i < qn.docs.length; i++) {
         _products.add({
-        //  "product-name": qn.docs[i]["product-name"],
-       //   "product-description": qn.docs[i]["product-description"],
-          //"product-price": qn.docs[i]["product-price"],
+         // "product-name": qn.docs[i]["product-name"],
+         // "product-description": qn.docs[i]["product-description"],
+        //  "product-price": qn.docs[i]["product-price"],
           "product-img": qn.docs[i]["product-img"],
         });
       }
@@ -217,16 +217,19 @@ class _HomeState extends State<Home> {
 
   fetchProducts() async {
     QuerySnapshot qn = await _firestoreInstance.collection("products").get();
+    print("--------------------------------------------------------+++++++++++++++++++++++");
+    print(qn.docs[1]["product-img"]);
     setState(() {
       for (int i = 0; i < qn.docs.length; i++) {
         _products.add({
-          //"product-name": qn.docs[i]["product-name"],
-         // "product-description": qn.docs[i]["product-description"],
-          //"product-price": qn.docs[i]["product-price"],
+         "product-name": qn.docs[i]["product-name"],
+        "product-description": qn.docs[i]["product-description"],
+         "product-price": qn.docs[i]["product-price"],
           "product-img": qn.docs[i]["product-img"],
         });
       }
     });
+    print(_products);
     return qn.docs;
   }
 
@@ -317,20 +320,29 @@ class _HomeState extends State<Home> {
                   ),
                   itemBuilder: (context, index) {
                     var product = _products[index];
+                    print('___________++++++RRRRRRRRRRRRRRRRR++++++++++++++++++++++++++++++++++');
+                    print(product);
                     var productImageList = product["product-img"];
-                    var productImageUrl = productImageList != null &&
-                        productImageList.isNotEmpty
-                        ? productImageList[0]
-                        : null;
+                    var productImageUrl = productImageList;
+                    print(productImageUrl);
+                    // productImageList != null &&
+                    //     productImageList.isNotEmpty
+                    //     ? productImageList[0]
+                    //     : null;
 
-                    return GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ProductDetails(product),
-                        ),
-                      ),
-                      child: Card(
+                    return
+                      GestureDetector(
+                      onTap: () {
+                        print(product);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ProductDetails(product),
+                          ),
+                        );
+                      },
+                      child:
+                      Card(
                         elevation: 3,
                         child: Column(
                           children: [
@@ -338,20 +350,25 @@ class _HomeState extends State<Home> {
                               aspectRatio: 2,
                               child: Container(
                                 color: Colors.yellow,
-                                child: productImageUrl != null
-                                    ? Image.network(
-                                  productImageUrl,
+                                child:
+                                // productImageUrl != null
+                                //     ?
+                                Image.network(
+                                  productImageUrl.toString(),
                                   fit: BoxFit.cover,
                                 )
-                                    : const Icon(Icons.image_not_supported),
+                                    // : const Icon(Icons.error),
+                                    // : const Icon(Icons.image_not_supported),
                               ),
                             ),
-                          //  Text("${product["product-name"]}"),
-                           // Text("${product["product-price"].toString()}"),
+                           Text("${product["product-name"]}"),
+                           Text("${product["product-price"].toString()} \$"),
                           ],
                         ),
-                      ),
-                    );
+                      )
+                      ,
+                    )
+                    ;
                   },
                 ),
               ),
